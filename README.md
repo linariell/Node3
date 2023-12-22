@@ -47,7 +47,8 @@ console.log('Сервер работает');
 </head>
 <body>
     <script>
-//1
+alert("Лабораторная 3");
+// 1
 {
     alert( null || 2 || undefined );
 }
@@ -76,12 +77,15 @@ console.log('Сервер работает');
 //7
 {
     let age=parseInt(prompt("Введите возраст",14))
- if(age<=14&&ag>=90) {alert("Возраст не находится в диапазоне");}
+ if((age<=14)&&(age>=90)) {alert("Возраст не находится в диапазоне");}
  else {alert("Возраст находится в диапазоне");}   
  
- let age2=parseInt(prompt("Введите возраст",14))
- if(!(age2>=14&&age2<=90)) {alert("Возраст не находится в диапазоне");}
- else {alert("Возраст находится в диапазоне");}   
+//Иначе
+// if (age < 14 || age > 90) {
+//     alert(true);
+// } else {
+//     alert(false);
+// } 
 }
 //8
 {
@@ -89,7 +93,7 @@ console.log('Сервер работает');
 if (-1 && 0) alert( 'second' );
 if (null || -1 && 1) alert( 'third' );
 }
-9
+//9
 {
     
     let login=prompt("Введите логин");
@@ -123,13 +127,11 @@ alert(i+" и "+j)
 //12
 {
 
-for (let i = 0; i < 5; ++i);
-for (let j = 0; j < 5; j++);
-alert(i+" и "+j)
+//Постфиксная форма выведет: 0, 1, 2, 3, 4. Префиксная форма выведет: 0, 1, 2, 3, 4.
 }
 //13
 {
-    let result;
+    let result="";
 for(let i=2;i<11;i+=2)
     result+=i+" ";
     alert(result);
@@ -147,16 +149,16 @@ while (i < 3){
 }
 //15
 {
-    let resp = prompt("Введите число");
+    let resp = parseInt(prompt("Введите число"));
 while(resp <= 100 && resp != null)
 {
-    resp = prompt("Введите число");
+    resp = prompt("Введите число",50);
 }
 }
 //16
 {
     
-let n = prompt("Введите n");
+let n = parseInt(prompt("Введите n"));
 let array = [2];
 for(let i = 3; i <= n; i++){
     for(let j = 0; j < array.length; j++){
@@ -174,8 +176,9 @@ alert(array);
 //17
 {
     let browser=prompt("Browser?")
-        if(browser.toLowerCase=="edge") {alert("You've got the Edge!");}
-        else if (browser.toLowerCase=="chrome"||browser.toLowerCase=="firefox"||browser.toLowerCase=="safari"||browser.toLowerCase=="opera") 
+    browser=browser.toLowerCase();
+        if(browser=="edge") {alert("You've got the Edge!");}
+        else if ((browser=="chrome")||(browser=="firefox")||(browser=="safari")||(browser=="opera")) 
         {alert("Okay we support these browsers too");}
         else alert("We hope that this page looks ok!");
 }
@@ -190,7 +193,7 @@ alert(array);
       break;
   case 2:
   case 3:
-      alert('Вы ввели число 2, а может и 3');
+      alert('Вы ввели число 2 или 3');
       break;
 }
 }
@@ -200,125 +203,141 @@ alert(array);
 }
 //20
 {
-    let age=prompt("Age:")
-    age>18?true:confirm("Родители разрешили");
-    age>18 || confirm ("Родители разрешили");
+    
+    alert("Вариант 1 с оператором ?");
+    checkAge3(parseInt(prompt("Введите возраст:"),14));
+    alert("Вариант 2 с оператором ||");
+    checkAge4(parseInt(prompt("Введите свой возраст:"),14));
+
+
+function checkAge3(age) {
+    return age > 18 ? true : confirm('Родители разрешили?');
+}
+
+function checkAge4(age) {
+    return age > 18 || confirm('Родители разрешили?');
+}
 }
 //21
 {
-    function min(a, b){
-    if (a > b) return b;
-    else if (a < b) return a;
-    else return a;
-}
+    let a=parseInt(prompt("a?",2))
+    let b=parseInt(prompt("b?",5))
+    
+    if (a > b) alert(b);
+    else if (a < b) alert(a);
+    else alert(a);
+
 }
 //22
 {
-    function pow(x,n)
-    {
+    let x=parseInt(prompt("x?",2))
+    let n=parseInt(prompt("n?",3))
+    
+    
        for (let i=1;i<n;i++)
         x=x*x;
-        return x;
-    }
+        alert(x);
+    
 }
 //Задачи на codewars
-function highAndLow(numbers){
-  let array = numbers.split(" ");
-  let min = parseInt(array[0]);
-  let max = parseInt(array[0]);
+// function highAndLow(numbers){
+//   let array = numbers.split(" ");
+//   let min = parseInt(array[0]);
+//   let max = parseInt(array[0]);
   
-  for(let i = 1; i < array.length; i++)
-   {
-     let element = parseInt(array[i]);
-     if (min > element)
-       min = element;
-     if (max < element)
-       max = element;
-   }
+//   for(let i = 1; i < array.length; i++)
+//    {
+//      let element = parseInt(array[i]);
+//      if (min > element)
+//        min = element;
+//      if (max < element)
+//        max = element;
+//    }
   
-  return `${max} ${min}`;
-}
-function disemvowel(str) {
-  str = str.replaceAll(/[aieouAIEOU]/g, "");
-  return str;
-}
-function isIsogram(str){
-  str = str.toLowerCase();
-  let array = [];
-  for(let i = 0; i < str.length; i++)
-  {
-    if (array.indexOf(str[i]) == -1)
-        array.push(str[i]);
-    else
-        return false;
-  }
-  return true;
-}
-function explode(s) {
-  let str = ""
-  for (let i=0; i < s.length; i++)
-    {
-      for (let j=0; j < parseInt(s[i]); j++)
-        {
-          str+=s[i];
-        }
-    }
-  return str;
-}
-function getParticipants(handshakes){
-  if (handshakes == 0) return 0;
-  let count = 0;
-  while (count*(count-1) < handshakes * 2)
-  {
-    count++;
-  }
-  return count;
-}
-function duplicateEncode(word){
-  word = word.toLowerCase();
-  let str = "";
-  for(let i = 0; i < word.length; i++){
-    let element = word[i];
-    for(let j = 0; j < word.length; j++)
-      {
-        if (i!=j && word[i] == word[j]){
-          str += ")";
-          element = null;
-          break;
-        }
-      }
-    if (element != null) {
-      str += "(";
-    }
-  }
-  return str;
-}
-function nthFibo(n) {
-  if(n == 1) return 0;
-  if(n == 2) return 1;
-  let first = 0;
-  let second = 1;
-  for(let i = 2; i < n; i++)
-    {
-      let third = first + second;
-      first = second;
-      second = third;
-    }
-  return second;
-}
-function solution(number){
-  let sum = 0;
-  for(let i = 1; i < number; i++)
-  {
-    if (i % 3 == 0 || i % 5 == 0 || i % 6 ==0 || i % 9 ==0)
-      sum += i;
-  }
-  return sum;
-}
+//   return `${max} ${min}`;
+// }
+// function disemvowel(str) {
+//   str = str.replaceAll(/[aieouAIEOU]/g, "");
+//   return str;
+// }
+// function isIsogram(str){
+//   str = str.toLowerCase();
+//   let array = [];
+//   for(let i = 0; i < str.length; i++)
+//   {
+//     if (array.indexOf(str[i]) == -1)
+//         array.push(str[i]);
+//     else
+//         return false;
+//   }
+//   return true;
+// }
+// function explode(s) {
+//   let str = ""
+//   for (let i=0; i < s.length; i++)
+//     {
+//       for (let j=0; j < parseInt(s[i]); j++)
+//         {
+//           str+=s[i];
+//         }
+//     }
+//   return str;
+// }
+// function getParticipants(handshakes){
+//   if (handshakes == 0) return 0;
+//   let count = 0;
+//   while (count*(count-1) < handshakes * 2)
+//   {
+//     count++;
+//   }
+//   return count;
+// }
+// function duplicateEncode(word){
+//   word = word.toLowerCase();
+//   let str = "";
+//   for(let i = 0; i < word.length; i++){
+//     let element = word[i];
+//     for(let j = 0; j < word.length; j++)
+//       {
+//         if (i!=j && word[i] == word[j]){
+//           str += ")";
+//           element = null;
+//           break;
+//         }
+//       }
+//     if (element != null) {
+//       str += "(";
+//     }
+//   }
+//   return str;
+// }
+// function nthFibo(n) {
+//   if(n == 1) return 0;
+//   if(n == 2) return 1;
+//   let first = 0;
+//   let second = 1;
+//   for(let i = 2; i < n; i++)
+//     {
+//       let third = first + second;
+//       first = second;
+//       second = third;
+//     }
+//   return second;
+// }
+// function solution(number){
+//   let sum = 0;
+//   for(let i = 1; i < number; i++)
+//   {
+//     if (i % 3 == 0 || i % 5 == 0 || i % 6 ==0 || i % 9 ==0)
+//       sum += i;
+//   }
+//   return sum;
+// }
     </script>
     
 </body>
 </html>
+
 </code>
 <p>Также был написан бот для Telegram:</p>
 <code>
